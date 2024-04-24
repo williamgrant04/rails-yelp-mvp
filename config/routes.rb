@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :restaurants, only: %i[index show new create] do
-      resources :reviews, only: %i[new]
+      resources :reviews, only: %i[index new create]
   end
-
-  post '/restaurants/:restaurant_id/reviews', to: "reviews#create", as: :review
+  resources :reviews, only: %i[show edit update destroy]
 end

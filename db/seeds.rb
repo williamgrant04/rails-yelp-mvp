@@ -7,3 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+puts "Clearing"
+
+Restaurant.destroy_all
+
+puts "Seeding"
+10.times do
+  rest = Restaurant.create(name: "Rest", address: "123 main street", phone_number: "1234567890", category: "japanese")
+  5.times do
+    review = Review.new(content: "Bad", rating: 1)
+    review.restaurant = rest
+    review.save
+  end
+end
+
+puts "Done"

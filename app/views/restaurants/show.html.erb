@@ -1,0 +1,19 @@
+<h1><%= @restaurant.name %></h1>
+<div>
+  <p><%= @restaurant.address %></p>
+  <p><%= @restaurant.phone_number %></p>
+  <p><%= @restaurant.category %></p>
+</div>
+
+<div>
+  <h2>Reviews</h2>
+  <%= link_to "New review", new_restaurant_review_path(@restaurant.id) %>
+  <% @reviews.each do |review| %>
+    <div style="display: flex;">
+      <p style="margin-right: 10px;"><%= review.rating %>:</p>
+      <p><%= review.content %></p>
+      <%= link_to 'Delete', review_path(review),
+          data: {turbo_method: :delete} %>
+    </div>
+  <% end %>
+</div>
